@@ -21,7 +21,6 @@ spec:
       - args:
         - --cert-dir=/var/run/serving-cert
         - --config=/etc/adapter/config.yaml
-        - --logtostderr=true
         - --metrics-relist-interval=1m
         - --prometheus-url=http://prometheus-k8s.monitoring.svc:9090/
         - --secure-port=6443
@@ -50,3 +49,4 @@ spec:
       - configMap:
           name: adapter-config
         name: config
+
