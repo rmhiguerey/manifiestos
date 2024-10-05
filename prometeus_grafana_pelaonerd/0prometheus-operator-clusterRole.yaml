@@ -22,7 +22,7 @@ rules:
   - alertmanagers/finalizers
   - servicemonitors
   - podmonitors
-  - prometheusrules
+  - prometheusrule
   - alertmanagerconfigs
   - probes
   verbs:
