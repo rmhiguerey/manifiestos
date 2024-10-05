@@ -23,7 +23,6 @@ spec:
       containers:
       - args:
         - --kubelet-service=kube-system/kubelet
-        - --config-reloader-image=quay.io/prometheus-operator/prometheus-config-reloader:v0.66.0
         - --prometheus-config-reloader=quay.io/prometheus-operator/prometheus-config-reloader:v0.66.0
         image: quay.io/prometheus-operator/prometheus-operator:v0.66.0
         name: prometheus-operator
@@ -45,5 +44,6 @@ spec:
         runAsNonRoot: true
         runAsUser: 65534
       serviceAccountName: prometheus-operator
+
 
 
