@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: grafana
+  name: grafana-cluster-role
 rules:
   - apiGroups: [""]
     resources:
