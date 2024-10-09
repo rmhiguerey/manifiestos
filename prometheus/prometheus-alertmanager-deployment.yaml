@@ -29,7 +29,7 @@ spec:
           args:
             - --config.file=/etc/config/alertmanager.yml
             - --storage.path=/data
-            - --web.external-url=/
+            - --web.external-url=http://alertmanager.monitoring.svc:9093
           ports:
             - containerPort: 9093
           readinessProbe:
