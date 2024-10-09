@@ -6,6 +6,20 @@ metadata:
     name: prometheus-server-conf
   namespace: monitoring
 data:
+
+  pod-count-rule.yaml: |
+    groups:
+    - name: pod-count
+      rules:
+      - alert: HighPodCount
+        expr: sum(kube_pod_info{namespace=~"namespace1|namespace2|namespace3"}) > 10
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High number of pods in specified namespaces"
+          description: "There are more than 10 pods in the specified namespaces."
+          
   prometheus.rules: |-
     groups:
     - name: devopscube demo alert
