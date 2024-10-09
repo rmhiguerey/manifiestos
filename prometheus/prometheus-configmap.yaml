@@ -19,7 +19,7 @@ data:
         annotations:
           summary: "High number of pods in specified namespaces"
           description: "There are more than 10 pods in the specified namespaces."
-          
+
   prometheus.rules: |-
     groups:
     - name: devopscube demo alert
@@ -45,6 +45,15 @@ data:
           - "alertmanager.monitoring.svc:9093"
 
     scrape_configs:
+
+      - job_name: 'kubernetes-pods'
+        kubernetes_sd_configs:
+          - role: pod
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_name]
+            action: keep
+            regex: .+
+
       - job_name: 'kubernetes-apiservers'
 
         kubernetes_sd_configs:
