@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: grafana
+  namespace: monitoring
 spec:
   replicas: 1
   selector:
@@ -13,17 +14,18 @@ spec:
         app: grafana
     spec:
       containers:
-        - name: grafana
-          image: grafana/grafana:latest
-          ports:
-          - containerPort: 3000
-          volumeMounts:
-          - name: grafana-datasources
-            mountPath: /etc/grafana/provisioning/datasources
-            subPath: prometheus-datasource.yaml
+      - name: grafana
+        image: grafana/grafana:latest
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+        - name: grafana-datasources
+          mountPath: /etc/grafana/provisioning/datasources
+          subPath: prometheus-datasource.yaml
       volumes:
       - name: grafana-datasources
         configMap:
           name: grafana-datasources
+
 
 
