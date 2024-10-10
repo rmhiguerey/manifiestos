@@ -1,0 +1,19 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cadvisor
+  labels:
+    k8s-app: cadvisor
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - pods
+  - nodes/proxy
+  - services
+  - endpoints
+  - namespaces
+  verbs:
+  - get
+  - list
+  - watch
