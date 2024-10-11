@@ -45,12 +45,9 @@ data:
           - source_labels: [__meta_kubernetes_service_label_k8s_app]
             action: keep
             regex: node-exporter
-        scheme: http  # Usa http ya que es solo tráfico interno
+        scheme: http
         scrape_interval: 30s
-        metrics_path: /metrics
-        static_configs:
-          - targets:
-            - 'node-exporter.monitoring.svc:9100'  
+        metrics_path: /metrics 
 
 
       - job_name: 'kubernetes-apiservers'
