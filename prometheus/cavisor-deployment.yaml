@@ -19,7 +19,6 @@ spec:
           image: google/cadvisor:latest
           ports:
             - containerPort: 8080
-            - protocol: TCP
           resources:
             requests:
               cpu: 100m
