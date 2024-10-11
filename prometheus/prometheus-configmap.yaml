@@ -33,19 +33,9 @@ data:
 
     scrape_configs:
 
-    - job_name: 'kubernetes-cadvisor'
-      kubernetes_sd_configs:
-        - role: endpoints
-      relabel_configs:
-        - source_labels: [__meta_kubernetes_service_label_k8s_app]
-          action: keep
-          regex: cadvisor
-        - action: labelmap
-          regex: __meta_kubernetes_node_label_(.+)
-        - target_label: __address__
-          replacement: cadvisor.monitoring.svc:8080
-      scrape_interval: 30s
-      metrics_path: /metrics
+    - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['http://192.168.58.2:30001/']
 
 
     - job_name: 'node-exporter'
