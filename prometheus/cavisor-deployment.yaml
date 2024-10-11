@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: cadvisor
-          image: google/cadvisor:latest
+          image: google/cadvisor:v0.44.0
           args:
             - --storage_driver=filesystem
             - --storage_driver_host=0.0.0.0:8080
