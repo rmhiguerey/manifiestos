@@ -40,7 +40,7 @@ data:
         - action: labelmap
           regex: __meta_kubernetes_node_label_(.+)
         - target_label: __address__
-          replacement: cadvisor.monitoring.svc:8080
+          replacement: 'cadvisor.monitoring.svc:8080'
         - source_labels: [__meta_kubernetes_node_name]
           regex: (.+)
           target_label: __metrics_path__
@@ -58,7 +58,7 @@ data:
       metrics_path: /metrics
       static_configs:
         - targets:
-          - 'node-exporter.monitoring.svc:9100'  # Interno en el clúster, ClusterIP
+          - 'node-exporter.monitoring.svc:9100'  
 
 
       - job_name: 'kubernetes-apiservers'
