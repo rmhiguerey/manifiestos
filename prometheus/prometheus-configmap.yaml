@@ -35,7 +35,7 @@ data:
 
       - job_name: 'cadvisor'
         static_configs:
-          - targets: ['192.168.58.2:30001/']
+          - targets: ['http://192.168.58.2:30001/']
 
 
       - job_name: 'node-exporter'
