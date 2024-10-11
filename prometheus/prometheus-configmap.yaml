@@ -40,7 +40,7 @@ data:
         - action: labelmap
           regex: __meta_kubernetes_node_label_(.+)
         - target_label: __address__
-          replacement: 'cadvisor.monitoring.svc:8080'
+          replacement: 'http://192.168.58.2:30001'
         - source_labels: [__meta_kubernetes_node_name]
           regex: (.+)
           target_label: __metrics_path__
