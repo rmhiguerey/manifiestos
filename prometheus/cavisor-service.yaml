@@ -6,11 +6,10 @@ metadata:
   labels:
     k8s-app: cadvisor
 spec:
-  type: NodePort
   ports:
-    - port: 3000
-      targetPort: 3000
-      nodePort: 30031
+  - name: metrics
+    port: 8080
+    targetPort: metrics
   selector:
     k8s-app: cadvisor
 
