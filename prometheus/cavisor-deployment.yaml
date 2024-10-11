@@ -15,23 +15,43 @@ spec:
         k8s-app: cadvisor
     spec:
       containers:
-        - name: cadvisor
-          image: gcr.io/google-containers/cadvisor:v0.36.0
-          ports:
-            - containerPort: 8080
-              name: metrics
-          volumeMounts:
-            - name: rootfs
-              mountPath: /rootfs
-              readOnly: true
-            - name: var-run
-              mountPath: /var/run
-              readOnly: true
-            - name: sys
-              mountPath: /sys
-              readOnly: true
-            - name: docker
-              mountPath: /var/lib/docker
-              readOnly: true
-          securityContext:
-            privileged: true
+      - name: cadvisor
+        image: gcr.io/cadvisor/cadvisor:v0.47.0
+        args:
+          - --storage_driver_host=0.0.0.0:8080
+        ports:
+        - containerPort: 8080
+          name: metrics
+        resources:
+          limits:
+            memory: 256Mi
+            cpu: 200m
+        volumeMounts:
+        - name: rootfs
+          mountPath: /rootfs
+          readOnly: true
+        - name: var-run
+          mountPath: /var/run
+          readOnly: false
+        - name: sys
+          mountPath: /sys
+          readOnly: true
+        - name: docker
+          mountPath: /var/lib/docker
+          readOnly: true
+      nodeSelector:
+        kubernetes.io/os: linux
+      serviceAccountName: cadvisor
+      volumes:
+      - name: rootfs
+        hostPath:
+          path: /
+      - name: var-run
+        hostPath:
+          path: /var/run
+      - name: sys
+        hostPath:
+          path: /sys
+      - name: docker
+        hostPath:
+          path: /var/lib/docker
