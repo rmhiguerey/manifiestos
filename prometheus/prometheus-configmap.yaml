@@ -50,22 +50,20 @@ data:
           target_label: __metrics_path__
           replacement: /api/v1/nodes/${1}/proxy/metrics/cadvisor
 
+    - job_name: 'node-exporter'
+      kubernetes_sd_configs:
+        - role: endpoints
+      relabel_configs:
+        - source_labels: [__meta_kubernetes_service_label_k8s_app]
+          action: keep
+          regex: node-exporter
+      scheme: http  # Usa http ya que es solo tráfico interno
+      scrape_interval: 30s
+      metrics_path: /metrics
+      static_configs:
+        - targets:
+          - 'node-exporter.monitoring.svc:9100'  # Interno en el clúster, ClusterIP
 
-      # Node Exporter - secured with TLS
-      - job_name: 'node-exporter'
-        kubernetes_sd_configs:
-          - role: endpoints
-        relabel_configs:
-          - source_labels: [__meta_kubernetes_service_label_k8s_app]
-            action: keep
-            regex: node-exporter
-        scheme: https
-        tls_config:
-          ca_file: /etc/prometheus/certs/ca.crt  # Ruta al certificado CA
-          cert_file: /etc/prometheus/certs/prometheus.crt  # Certificado de Prometheus
-          key_file: /etc/prometheus/certs/prometheus.key   # Llave privada de Prometheus
-        bearer_token_file: /var/run/secrets/kubernetes.io/serviceaccount/token
-        scrape_interval: 30s
 
       - job_name: 'kubernetes-apiservers'
         kubernetes_sd_configs:
