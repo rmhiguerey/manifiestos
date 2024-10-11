@@ -1,13 +1,13 @@
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: cadvisor
   namespace: monitoring
 spec:
-  type: NodePort # Cambiar a LoadBalancer si es necesario
+  type: NodePort
   ports:
     - port: 8080
+      nodePort: 30001
       targetPort: 8080
-      nodePort: 30001 # Cambiar según tu entorno
   selector:
     app: cadvisor
