@@ -16,10 +16,12 @@ spec:
     spec:
       containers:
         - name: cadvisor
-          image: google/cadvisor:v0.44.0
+          image: google/cadvisor:latest
           args:
             - --storage_driver=filesystem
             - --storage_driver_host=0.0.0.0:8080
+          securityContext:
+            privileged: true  
           ports:
             - containerPort: 8080
           resources:
