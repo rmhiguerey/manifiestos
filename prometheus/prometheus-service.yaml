@@ -11,6 +11,5 @@ spec:
       targetPort: 9090
       nodePort: 30031
   type: NodePort
-  selector:
-    app: prometheus
+
 
