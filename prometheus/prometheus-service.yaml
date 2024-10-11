@@ -9,5 +9,8 @@ spec:
   ports:
     - port: 9090
       targetPort: 9090
-      protocol: TCP
-  type: ClusterIP
+      nodePort: 30031
+  type: NodePort
+  selector:
+    app: prometheus
+
