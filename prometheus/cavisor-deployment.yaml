@@ -17,11 +17,6 @@ spec:
       containers:
         - name: cadvisor
           image: google/cadvisor:latest
-          args:
-            - --storage_driver=filesystem
-            - --storage_driver_host=0.0.0.0:8080
-          securityContext:
-            privileged: true  
           ports:
             - containerPort: 8080
           resources:
@@ -31,6 +26,8 @@ spec:
             limits:
               cpu: 200m
               memory: 400Mi
+          securityContext:
+            privileged: true # Permitir acceso a recursos del host
           volumeMounts:
             - name: rootfs
               mountPath: /rootfs
@@ -57,3 +54,4 @@ spec:
         - name: docker
           hostPath:
             path: /var/lib/docker
+
