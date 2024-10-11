@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: cadvisor
-          image: gcr.io/cadvisor/cadvisor:v0.47.1 
+          image: google/cadvisor:latest
           ports:
             - containerPort: 8080
             - protocol: TCP
