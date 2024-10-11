@@ -3,14 +3,11 @@ kind: Service
 metadata:
   name: cadvisor
   namespace: monitoring
-  labels:
-    app: cadvisor
 spec:
   type: NodePort # Cambiar a LoadBalancer si es necesario
   ports:
     - port: 8080
       targetPort: 8080
-      protocol: TCP
       nodePort: 30001 # Cambiar según tu entorno
   selector:
     app: cadvisor
