@@ -2,15 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: node-exporter
+    k8s-app: node-exporter
   name: node-exporter
   namespace: monitoring
 spec:
   type: NodePort
   ports:
-  - name: metrics
-    port: 9100
-    targetPort: 9100
-    nodePort: 30100
+    - name: metrics
+      port: 9100       # Puerto en el contenedor
+      targetPort: 9100 # Puerto en el pod donde corre node-exporter
+      nodePort: 30002  # Puerto que usará el nodo para exponer el servicio
   selector:
-    app: node-exporter
+    k8s-app: node-exporter
