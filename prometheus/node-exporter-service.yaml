@@ -5,7 +5,7 @@ metadata:
   name: node-exporter
   namespace: monitoring
   labels:
-    app: node-exporter
+    k8s-app: node-exporter
 spec:
   type: NodePort
   ports:
@@ -14,7 +14,7 @@ spec:
       targetPort: 9100
       nodePort: 30100  # Puedes cambiarlo al puerto que prefieras (rango 30000-32767)
   selector:
-    app: node-exporter
+    k8s-app: node-exporter
 
 
 
