@@ -8,8 +8,8 @@ metadata:
 spec:
   clusterIP: None
   ports:
-  - name: https
+  - name: metrics
     port: 9100
-    targetPort: https
+    targetPort: 9100
   selector:
-    app: node-exporter
+    k8s-app: node-exporter
