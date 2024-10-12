@@ -6,10 +6,10 @@ metadata:
   name: node-exporter
   namespace: monitoring
 spec:
+  clusterIP: None
   ports:
-    - name: metrics
-      port: 9100
-      targetPort: https
+  - name: https
+    port: 9100
+    targetPort: https
   selector:
     app: node-exporter
-  type: ClusterIP
