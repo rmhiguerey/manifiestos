@@ -1,15 +1,35 @@
+
 apiVersion: v1
 kind: Service
 metadata:
-  labels:
-    k8s-app: node-exporter
   name: node-exporter
   namespace: monitoring
+  labels:
+    app: node-exporter
 spec:
-  clusterIP: None
+  type: NodePort
   ports:
-  - name: metrics
-    port: 9100
-    targetPort: 9100
+    - name: metrics
+      port: 9100
+      targetPort: 9100
+      nodePort: 30100  # Puedes cambiarlo al puerto que prefieras (rango 30000-32767)
   selector:
-    k8s-app: node-exporter
+    app: node-exporter
+
+
+
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  labels:
+#    k8s-app: node-exporter
+#  name: node-exporter
+#  namespace: monitoring
+# spec:
+ #  clusterIP: None
+ #  ports:
+ #  - name: metrics
+ #    port: 9100
+ #    targetPort: 9100
+ #  selector:
+ #    k8s-app: node-exporter
