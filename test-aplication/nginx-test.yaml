@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx-notifications
+  namespace: argocd
+  annotations:
+    notifications.argoproj.io/triggers: on-sync-succeeded
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/argoproj/argocd-example-apps.git
+    targetRevision: HEAD
+    path: nginx
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nginx-example
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
