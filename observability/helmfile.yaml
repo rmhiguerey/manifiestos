@@ -1,22 +1,36 @@
-repositories:
-  - name: grafana
-    url: https://grafana.github.io/helm-charts
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: observability
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: grafana
+      targetRevision: 6.57.4
+      helm:
+        valueFiles:
+          - values/grafana-values.yaml
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: loki
+      targetRevision: 5.43.3
+      helm:
+        valueFiles:
+          - values/loki-values.yaml
+    - repoURL: https://grafana.github.io/helm-charts
+      chart: promtail
+      targetRevision: 6.15.5
+      helm:
+        valueFiles:
+          - values/promtail-values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
 
-releases:
-  - name: loki
-    chart: grafana/loki
-    namespace: observability
-    values:
-      - ./loki/values.yaml
-
-  - name: promtail
-    chart: grafana/promtail
-    namespace: observability
-    values:
-      - ./promtail/values.yaml
-
-  - name: grafana
-    chart: grafana/grafana
-    namespace: observability
-    values:
-      - ./grafana/values.yaml

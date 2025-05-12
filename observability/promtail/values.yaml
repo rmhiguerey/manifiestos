@@ -3,10 +3,10 @@ config:
     - url: http://loki:3100/loki/api/v1/push
 
   positions:
-    filename: /tmp/positions.yaml
+    filename: /run/promtail/positions.yaml
 
   scrape_configs:
-    - job_name: laravel_logs
+    - job_name: laravel-logs
       static_configs:
         - targets:
             - localhost
@@ -14,12 +14,14 @@ config:
             job: laravel
             __path__: /mnt/efs/storage/logs/*.log
 
+extraVolumes:
+  - name: laravel-logs
+    hostPath:
+      path: /mnt/data/efs-logs
+      type: DirectoryOrCreate
+
 extraVolumeMounts:
-  - name: laravel-efs
+  - name: laravel-logs
     mountPath: /mnt/efs
     readOnly: true
 
-extraVolumes:
-  - name: laravel-efs
-    persistentVolumeClaim:
-      claimName: efs-demo-test
