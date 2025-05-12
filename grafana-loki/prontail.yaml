@@ -21,8 +21,14 @@ spec:
           volumeMounts:
             - name: logs
               mountPath: /var/log/laravel
+            - name: config
+              mountPath: /etc/promtail
       volumes:
         - name: logs
           persistentVolumeClaim:
             claimName: efs-pvc
+        - name: config
+          configMap:
+            name: promtail-config
+
 
