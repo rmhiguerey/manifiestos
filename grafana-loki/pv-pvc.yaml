@@ -7,7 +7,8 @@ spec:
     storage: 1Gi
   accessModes:
     - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: ""  
   hostPath:
     path: "/mnt/efs-simulado"
 ---
@@ -16,9 +17,11 @@ kind: PersistentVolumeClaim
 metadata:
   name: efs-pvc
 spec:
+  storageClassName: ""  
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
+
 
