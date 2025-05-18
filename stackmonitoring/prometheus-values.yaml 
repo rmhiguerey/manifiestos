@@ -1,25 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-values
+  namespace: monitoring
+data:
+  prometheus-values.yaml: |
+    exporters:
+    nodeExporter:
+        enabled: true
+        service:
+        type: ClusterIP
+        port: 9100
 
-exporters:
-  nodeExporter:
-    enabled: true
-    service:
-      type: ClusterIP
-      port: 9100
+    redisExporter:
+        enabled: true
+        service:
+        type: ClusterIP
+        port: 9121
+        env:
+        - name: REDIS_ADDR
+            value: "redis://redis-host:6379"
 
-  redisExporter:
-    enabled: true
-    service:
-      type: ClusterIP
-      port: 9121
-    env:
-      - name: REDIS_ADDR
-        value: "redis://redis-host:6379"
-
-  rdsExporter:
-    enabled: true
-    service:
-      type: ClusterIP
-      port: 9187
-    env:
-      - name: DATA_SOURCE_NAME
-        value: "postgres://user:password@rds-host:5432/dbname?sslmode=disable"
+    rdsExporter:
+        enabled: true
+        service:
+        type: ClusterIP
+        port: 9187
+        env:
+        - name: DATA_SOURCE_NAME
+            value: "postgres://user:password@rds-host:5432/dbname?sslmode=disable"

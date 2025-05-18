@@ -6,14 +6,12 @@ metadata:
 spec:
   project: monitoring
   source:
-    repoURL: https://github.com/rmhiguerey/manifiestos.git
-    path: monitoring/prometheus
-    chart: stackmonitoring
     repoURL: https://prometheus-community.github.io/helm-charts
+    chart: prometheus
     targetRevision: 25.0.0
     helm:
       valueFiles:
-        - prometheus-values.yaml 
+        - /etc/config/prometheus-values.yaml 
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring

@@ -6,13 +6,12 @@ metadata:
 spec:
   project: monitoring
   source:
-    repoURL: https://github.com/rmhiguerey/manifiestos.git
-    path: stackmonitoring/grafana
+    repoURL: https://grafana.github.io/helm-charts
     chart: grafana
     targetRevision: 6.56.0
     helm:
       valueFiles:
-        - grafana-value.yaml
+        - /etc/config/grafana-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -20,4 +19,6 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
+
 
