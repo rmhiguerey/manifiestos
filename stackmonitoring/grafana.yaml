@@ -10,8 +10,9 @@ spec:
     chart: grafana
     targetRevision: 6.56.0
     helm:
-      valueFiles:
-        - grafana-values.yaml
+      values: |
+        {{- tpl (index .Values "grafana-helm-values" "values.yaml") . | nindent 8 }}
+      valueFiles: []  
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
