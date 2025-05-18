@@ -10,8 +10,17 @@ spec:
     chart: grafana
     targetRevision: 6.56.0
     helm:
-      valuesFiles:
-        - /configmaps/grafana-helm-values.yaml
+      # Método 1: Usar valores directamente
+      values: |
+        # Usa un ConfigMap existente
+        {{- $configMapName := "grafana-helm-values" }}
+        {{- $configMapNamespace := "monitoring" }}
+        {{- $configMap := lookup "v1" "ConfigMap" $configMapNamespace $configMapName }}
+        {{- if $configMap }}
+        {{- $configMap.data.values\.yaml | nindent 8 }}
+        {{- end }}
+      # O método 2: Usar plugin si lo has configurado
+      # valueFiles: []
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -19,5 +28,4 @@ spec:
     automated:
       prune: true
       selfHeal: true
-
 

@@ -60,7 +60,4 @@ data:
         rds-queries:
           gnetId: 13623
           revision: 1
-
-
-
-
+          datasource: Prometheus
