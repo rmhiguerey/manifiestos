@@ -1,21 +1,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prometheus
-  namespace: argocd
+  name: loki
+  namespace: monitoring
 spec:
-  project: default
+  project: monitoring
   source:
     repoURL: https://github.com/tu-repo/k8s-monitoring.git
-    path: monitoring/prometheus
-    chart: prometheus
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 25.0.0
+    path: monitoring/loki
+    chart: loki
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 5.8.0
     helm:
       valueFiles:
-        - values.yaml
+        - loki-values.yaml
   destination:
-    server: https://EKS-MONITORING-CLUSTER
+    server: https://kubernetes.default.svc
     namespace: monitoring
   syncPolicy:
     automated:
