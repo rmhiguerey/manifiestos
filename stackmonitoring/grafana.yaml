@@ -10,9 +10,8 @@ spec:
     chart: grafana
     targetRevision: 6.56.0
     helm:
-      values: |
-        {{- tpl (index .Values "grafana-helm-values" "values.yaml") . | nindent 8 }}
-      valueFiles: []  
+      valuesFiles:
+        - /configmaps/grafana-helm-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -20,6 +19,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
-
 
 

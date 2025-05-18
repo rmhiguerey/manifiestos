@@ -60,10 +60,7 @@ data:
         rds-queries:
           gnetId: 13623
           revision: 1
-          datasource: Prometheus   
-    
-    grafana:
-      externalUrl: http://MINIKUBE-IP:30001
+
 
 
 
