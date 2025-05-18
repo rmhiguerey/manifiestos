@@ -70,13 +70,13 @@ spec:
         
         grafana:
           externalUrl: "http://MINIKUBE-IP:30001"
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: monitoring
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+        destination:
+          server: https://kubernetes.default.svc
+          namespace: monitoring
+        syncPolicy:
+          automated:
+            prune: true
+            selfHeal: true
 
 
 
