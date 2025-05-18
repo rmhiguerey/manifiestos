@@ -65,5 +65,15 @@ data:
     grafana:
     externalUrl: http://MINIKUBE-IP:30001
 
+    extraVolumes:
+        - name: grafana-values
+            configMap:
+            name: grafana-values
+
+    extraVolumeMounts:
+        - name: grafana-values
+            mountPath: /etc/config/ 
+
+
 
 
