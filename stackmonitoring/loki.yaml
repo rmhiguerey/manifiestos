@@ -1,26 +1,21 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: loki
-  namespace: argocd
+  namespace: monitoring
 spec:
-  project: default
-  sources:
-    - chart: loki
-      repoURL: https://grafana.github.io/helm-charts
-      targetRevision: 5.8.0
-      helm:
-        valuesFiles:
-          - $values/stackmonitoring/loki-values.yaml
-    - repoURL: https://github.com/rmhiguerey/manifiestos.git
-      targetRevision: main
-      ref: values
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: monitoring
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loki
+  template:
+    metadata:
+      labels:
+        app: loki
+    spec:
+      containers:
+        - name: loki
+          image: grafana/loki:latest
+          ports:
+            - containerPort: 3100
 
