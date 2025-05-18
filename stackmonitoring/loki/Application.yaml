@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/tu-repo/k8s-monitoring.git
+    path: monitoring/loki
+    chart: loki
+    repoURL: https://grafana.github.io/helm-charts
+    targetRevision: 5.8.0
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: https://EKS-MONITORING-CLUSTER
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

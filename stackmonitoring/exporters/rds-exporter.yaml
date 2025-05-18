@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rds-exporter
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rds-exporter
+  template:
+    metadata:
+      labels:
+        app: rds-exporter
+    spec:
+      containers:
+        - name: rds-exporter
+          image: prometheuscommunity/postgres-exporter:v0.10.0
+          env:
+            - name: DATA_SOURCE_NAME
+              value: "postgres://user:password@rds-host:5432/dbname?sslmode=disable"
