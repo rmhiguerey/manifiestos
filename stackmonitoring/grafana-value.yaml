@@ -21,7 +21,7 @@ data:
       size: 10Gi
     
     datasources:
-      datasources.yaml:
+      datasources.yaml: |
         apiVersion: 1
         datasources:
           - name: Prometheus
@@ -35,7 +35,7 @@ data:
             access: proxy
     
     dashboardProviders:
-      dashboardProviders.yaml:
+      dashboardProviders.yaml: |
         apiVersion: 1
         providers:
           - name: default
@@ -48,7 +48,7 @@ data:
               path: /var/lib/grafana/dashboards
     
     dashboards:
-      default:
+      default: |
         kubernetes:
           gnetId: 315
           revision: 1
