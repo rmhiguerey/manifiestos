@@ -7,3 +7,6 @@ service:
       targetPort: 3100
   selector:
     app: loki
+
+loki:
+  externalUrl: http://MINIKUBE-IP:3100

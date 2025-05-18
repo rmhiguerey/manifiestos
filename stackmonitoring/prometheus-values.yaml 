@@ -1,1 +1,4 @@
 
+prometheus:
+  server:
+    externalUrl: http://MINIKUBE-IP:30090
