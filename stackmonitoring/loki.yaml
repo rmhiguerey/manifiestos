@@ -6,7 +6,7 @@ metadata:
 spec:
   project: monitoring
   source:
-    repoURL: https://github.com/tu-repo/k8s-monitoring.git
+    repoURL: https://github.com/rmhiguerey/manifiestos.git
     path: monitoring/loki
     chart: loki
     repoURL: https://grafana.github.io/helm-charts
