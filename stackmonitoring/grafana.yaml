@@ -5,14 +5,13 @@ metadata:
   namespace: argocd
 spec:
   project: monitoring
-  source:
-    chart: grafana
-    repoURL: https://grafana.github.io/helm-charts
-    targetRevision: 6.56.0
-    helm:
-      valuesFiles:
-        - $values/grafana-value.yaml
   sources:
+    - chart: grafana
+      repoURL: https://grafana.github.io/helm-charts
+      targetRevision: 6.56.0
+      helm:
+        valuesFiles:
+          - $values/grafana-value.yaml
     - repoURL: https://github.com/rmhiguerey/manifiestos.git
       targetRevision: main
       ref: values
@@ -23,6 +22,7 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
 
 
 
