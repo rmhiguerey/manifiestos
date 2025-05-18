@@ -5,13 +5,16 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://grafana.github.io/helm-charts
-    chart: loki
-    targetRevision: 5.8.0
-    helm:
-      valueFiles:
-        - /etc/config/loki-values.yaml
+  sources:
+    - chart: loki
+      repoURL: https://grafana.github.io/helm-charts
+      targetRevision: 5.8.0
+      helm:
+        valuesFiles:
+          - $values/stackmonitoring/loki-values.yaml
+    - repoURL: https://github.com/rmhiguerey/manifiestos.git
+      targetRevision: main
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -19,4 +22,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
 

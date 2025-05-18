@@ -5,13 +5,16 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: https://prometheus-community.github.io/helm-charts
-    chart: prometheus
-    targetRevision: 25.0.0
-    helm:
-      valueFiles:
-        - /etc/config/prometheus-values.yaml 
+  sources:
+    - chart: prometheus
+      repoURL: https://prometheus-community.github.io/helm-charts
+      targetRevision: 25.0.0
+      helm:
+        valuesFiles:
+          - $values/stackmonitoring/prometheus-values.yaml
+    - repoURL: https://github.com/rmhiguerey/manifiestos.git
+      targetRevision: main
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -19,3 +22,4 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
