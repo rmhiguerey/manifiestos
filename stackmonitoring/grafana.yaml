@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/rmhiguerey/manifiestos.git
-    path: stackmonitoring/
+    path: stackmonitoring
     targetRevision: main
     helm:
       valueFiles:
