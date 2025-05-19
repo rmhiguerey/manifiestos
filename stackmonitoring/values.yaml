@@ -5,8 +5,8 @@ service:
   type: NodePort
   ports:
     - name: http
-      port: 3000
-      targetPort: 3000
+      port: 3008
+      targetPort: 3008
       nodePort: 30001
   selector:
     app: grafana
