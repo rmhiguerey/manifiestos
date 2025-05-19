@@ -52,4 +52,59 @@ dashboards:
       gnetId: 13623
       revision: 1
       datasource: Prometheus
+    namespace-monitoring:
+      json: |
+        {
+          "dashboard": {
+            "title": "Estado y Consumo por Namespace",
+            "panels": [
+              {
+                "title": "Pods en Buen Estado",
+                "type": "stat",
+                "targets": [
+                  {
+                    "expr": "count(kube_pod_status_phase{phase='Running'}) by (namespace)"
+                  }
+                ]
+              },
+              {
+                "title": "Pods en Mal Estado",
+                "type": "stat",
+                "targets": [
+                  {
+                    "expr": "count(kube_pod_status_phase{phase=~'Failed|CrashLoopBackOff'}) by (namespace)"
+                  }
+                ]
+              },
+              {
+                "title": "Pods en Construcción",
+                "type": "stat",
+                "targets": [
+                  {
+                    "expr": "count(kube_pod_status_phase{phase=~'Pending|ContainerCreating'}) by (namespace)"
+                  }
+                ]
+              },
+              {
+                "title": "Consumo de CPU por Pod",
+                "type": "graph",
+                "targets": [
+                  {
+                    "expr": "sum(rate(container_cpu_usage_seconds_total[5m])) by (pod)"
+                  }
+                ]
+              },
+              {
+                "title": "Uso de Memoria por Pod",
+                "type": "graph",
+                "targets": [
+                  {
+                    "expr": "sum(container_memory_usage_bytes) by (pod)"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+
 
