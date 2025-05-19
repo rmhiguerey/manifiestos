@@ -5,19 +5,17 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  sources:
-    - repoURL: https://grafana.github.io/helm-charts
+  source:
+    repoURL: https://github.com/rmhiguerey/manifiestos.git
+    path: stackmonitoring/
+    targetRevision: main
+    helm:
+      releaseName: grafana
       chart: grafana
-      targetRevision: 6.56.0
-      helm:
-        valueFiles:
-          - values-grafana.yaml  
-    - repoURL: https://github.com/rmhiguerey/manifiestos.git
-      path: stackmonitoring/
-      targetRevision: main
-      ref: valuesrepo
-  sourcesHelm:
-    valueFilesRepo: valuesrepo
+      repo: https://grafana.github.io/helm-charts
+      version: 6.56.0
+      valueFiles:
+        - values-grafana.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
