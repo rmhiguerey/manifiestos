@@ -15,7 +15,7 @@ spec:
     - repoURL: https://github.com/rmhiguerey/manifiestos.git
       targetRevision: main
       ref: valuesrepo
-      path: stackmonitoring/grafana 
+      path: stackmonitoring
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
