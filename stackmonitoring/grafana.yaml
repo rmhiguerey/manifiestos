@@ -10,10 +10,6 @@ spec:
     path: stackmonitoring/
     targetRevision: main
     helm:
-      releaseName: grafana
-      chart: grafana
-      repo: https://grafana.github.io/helm-charts
-      version: 6.56.0
       valueFiles:
         - values-grafana.yaml
   destination:
