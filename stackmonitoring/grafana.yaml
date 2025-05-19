@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  sources:
+  source:
     - chart: grafana
       repoURL: https://grafana.github.io/helm-charts
       targetRevision: 6.56.0
