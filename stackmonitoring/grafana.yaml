@@ -13,7 +13,7 @@ spec:
         valueFiles:
           - stackmonitoring/grafana/values-grafana.yaml
     - repoURL: https://github.com/rmhiguerey/manifiestos.git
-      path: stackmonitoring/grafana
+      path: stackmonitoring
       targetRevision: main
   destination:
     server: https://kubernetes.default.svc
