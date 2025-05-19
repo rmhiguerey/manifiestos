@@ -13,9 +13,11 @@ spec:
         valueFiles:
           - values-grafana.yaml  
     - repoURL: https://github.com/rmhiguerey/manifiestos.git
+      path: stackmonitoring/
       targetRevision: main
       ref: valuesrepo
-      path: stackmonitoring
+  sourcesHelm:
+    valueFilesRepo: valuesrepo
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -23,6 +25,7 @@ spec:
     automated:
       prune: true
       selfHeal: true
+
 
 
 
