@@ -11,10 +11,10 @@ spec:
       targetRevision: 25.0.0
       helm:
         valueFiles:
-          - $values/stackmonitoring/prometheus/values-grafana.yaml
+          - $values/stackmonitoring/prometheus/values-prometheus.yaml
     - repoURL: https://github.com/rmhiguerey/manifiestos.git
       targetRevision: main
-      path: stackmonitoring/grafana
+      path: stackmonitoring/prometheus
       ref: values
   destination:
     server: https://kubernetes.default.svc
