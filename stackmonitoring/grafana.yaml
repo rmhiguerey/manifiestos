@@ -11,7 +11,7 @@ spec:
       targetRevision: 6.56.0
       helm:
         valuesFiles:
-          - $values/stackmonitoring/grafana-value.yaml
+          - $values/stackmonitoring/values.yaml
     - repoURL: https://github.com/rmhiguerey/manifiestos.git
       targetRevision: main
       ref: values
