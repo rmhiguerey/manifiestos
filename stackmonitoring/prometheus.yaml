@@ -10,10 +10,11 @@ spec:
       repoURL: https://prometheus-community.github.io/helm-charts
       targetRevision: 25.0.0
       helm:
-        valuesFiles:
-          - $values/stackmonitoring/prometheus-values.yaml
+        valueFiles:
+          - $values/stackmonitoring/prometheus/values-grafana.yaml
     - repoURL: https://github.com/rmhiguerey/manifiestos.git
       targetRevision: main
+      path: stackmonitoring/grafana
       ref: values
   destination:
     server: https://kubernetes.default.svc
